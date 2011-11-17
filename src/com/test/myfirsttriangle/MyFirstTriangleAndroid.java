@@ -1,12 +1,28 @@
 package com.test.myfirsttriangle;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.Spinner;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 
-public class MyFirstTriangleAndroid extends AndroidApplication {
+
+public class MyFirstTriangleAndroid extends AndroidApplication
+{
+	Button potrdi;
+	Spinner spin;
+	
     @Override
         public void onCreate (Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
-                initialize(new MyFirstTriangle(), false);               
+               
+                izbira A = new izbira(); //hranjenje muzike
+               initialize(new MyFirstTriangle(A.stevilkaMuzike), false); 
+	
         }
+    
+  
+    
+    
+    
+    
 }

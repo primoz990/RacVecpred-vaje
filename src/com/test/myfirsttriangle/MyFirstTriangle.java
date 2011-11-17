@@ -1,14 +1,8 @@
 package com.test.myfirsttriangle;
 
-import java.io.File;
-
-import android.util.Log;
-
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-
-
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
@@ -23,6 +17,13 @@ import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 
 public class MyFirstTriangle implements ApplicationListener {
 
+	public static  int IzbranaMuzika=0;
+	public MyFirstTriangle(int i) 
+	{
+		IzbranaMuzika = i;
+		
+	}
+	
 	    public Music muzika;
         private PerspectiveCamera camera;
         private Mesh[] faces;
@@ -45,9 +46,16 @@ public class MyFirstTriangle implements ApplicationListener {
         	//http://www.opuzz.com/displayproducts-classical.asp?id=88&cat=Classical&st=styles&a=1
         	//http://www.youtube.com/watch?v=ra3H5UHLRGU
         	
-            muzika = Gdx.audio.newMusic(Gdx.files.internal("sss.mp3"));
+        	
+        	if(IzbranaMuzika==2) muzika = Gdx.audio.newMusic(Gdx.files.internal("PianoSonata.mp3"));
+        	else if(IzbranaMuzika==0) muzika = Gdx.audio.newMusic(Gdx.files.internal("Nocturne.mp3"));
+        	else if(IzbranaMuzika==1) muzika = Gdx.audio.newMusic(Gdx.files.internal("Paganini.mp3"));
+        	else if(IzbranaMuzika==3) muzika = Gdx.audio.newMusic(Gdx.files.internal("PreludeBWV.mp3"));
+        	else if(IzbranaMuzika==4) muzika = Gdx.audio.newMusic(Gdx.files.internal("Waltz.mp3"));
+            
+            
         	muzika.setLooping(true);
-        	muzika.setVolume(0.02f);
+        	muzika.setVolume(0.09f);
         	muzika.play();
         	
         	
@@ -122,7 +130,9 @@ public class MyFirstTriangle implements ApplicationListener {
         //@Override
         public void render() 
         {
-        
+        	if(Gdx.input.isKeyPressed(Input.Keys.KEYCODE_VOLUME_DOWN)) muzika.pause(); //PAUZA
+        	else if(Gdx.input.isKeyPressed(Input.Keys.KEYCODE_VOLUME_UP)) muzika.play(); //PLAY
+        	
         	if(stevec==0)
         	{
         		camera.position.x=0;
@@ -133,7 +143,7 @@ public class MyFirstTriangle implements ApplicationListener {
         	
         	if (Gdx.input.justTouched()) 
         	{
-        		  muzika.stop();
+        		  
         	      lastTouchX = Gdx.input.getX();
         	      lastTouchY = Gdx.input.getY();
         	      
