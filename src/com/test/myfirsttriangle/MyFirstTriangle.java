@@ -1,9 +1,15 @@
 package com.test.myfirsttriangle;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
+
+import android.util.Log;
+
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Mesh;
@@ -18,10 +24,10 @@ import com.badlogic.gdx.graphics.VertexAttributes.Usage;
 public class MyFirstTriangle implements ApplicationListener {
 
 	public static  int IzbranaMuzika=0;
+	
 	public MyFirstTriangle(int i) 
 	{
 		IzbranaMuzika = i;
-		
 	}
 	
 	    public Music muzika;
@@ -53,7 +59,7 @@ public class MyFirstTriangle implements ApplicationListener {
         	else if(IzbranaMuzika==3) muzika = Gdx.audio.newMusic(Gdx.files.internal("PreludeBWV.mp3"));
         	else if(IzbranaMuzika==4) muzika = Gdx.audio.newMusic(Gdx.files.internal("Waltz.mp3"));
             
-            
+        	
         	muzika.setLooping(true);
         	muzika.setVolume(0.09f);
         	muzika.play();
@@ -110,6 +116,18 @@ public class MyFirstTriangle implements ApplicationListener {
         	 
         	    Gdx.gl.glEnable(GL10.GL_DEPTH_TEST);
 	    
+        	    /*
+        	    try{
+        	    	InputStream vhod = new FileInputStream("/mnt/sdcard/candle.obj"); 
+        	    	Mesh mrezaa = ObjLoader.loadObj(vhod);
+        	    	Log.d("OK","Objekt nalozen");
+        	    }catch (Exception e) {
+        	    	Log.e("Napaka", e.toString());
+				}
+        	    
+        	   */
+        	    
+        	    
         }
 
        // @Override
@@ -138,12 +156,10 @@ public class MyFirstTriangle implements ApplicationListener {
         		camera.position.x=0;
         		camera.position.y=0;
         		camera.position.z=10;
-        		
         	}
         	
         	if (Gdx.input.justTouched()) 
         	{
-        		  
         	      lastTouchX = Gdx.input.getX();
         	      lastTouchY = Gdx.input.getY();
         	      
@@ -152,18 +168,15 @@ public class MyFirstTriangle implements ApplicationListener {
         		deltaX=lastTouchX - Gdx.input.getX();
         		deltaY=lastTouchY - Gdx.input.getY();
 
-        		//if(camera.position.x==10 || camera.position.x==-10) camera.position.x*=-1;
-        		//if(camera.position.y==10 || camera.position.y==-10) camera.position.y*=-1;
         		
-
         	      if(deltaX>0)
         	      {
-        	    	  camera.rotate(2, 0, 1, 0);
+        	    	  //camera.rotate(2, 0, 1, 0);
         	    	  camera.position.x+= 0.5f;
         	      }
         	      else if(deltaX<0)
         	      {
-        	    	  camera.rotate(-2, 0, 1, 0);
+        	    	  //camera.rotate(-2, 0, 1, 0);
         	    	  camera.position.x-= 0.5f;
         	      }
         	      
@@ -171,12 +184,12 @@ public class MyFirstTriangle implements ApplicationListener {
         	      
         	      if(deltaY>0)
         	      {
-        	    	  camera.rotate(1, 1, 0, 0);
+        	    	  //camera.rotate(1, 1, 0, 0);
         	    	  camera.position.y+= 0.2f;
         	      }
         	      else if(deltaY<0)
         	      {
-        	    	  camera.rotate(-1, 1, 0, 0);
+        	    	  //camera.rotate(-1, 1, 0, 0);
         	    	  camera.position.y-= 0.2f;   	    	
         	      }
 
@@ -219,10 +232,16 @@ public class MyFirstTriangle implements ApplicationListener {
         	 float aspectRatio = (float) width / (float) height;
         	    camera = new PerspectiveCamera(67, 2f * aspectRatio, 2f);
         	    camera.near = 0.1f;
-        	    camera.translate(0, 0, 0);
+        	    
         	
         }
 
         //@Override
         public void resume() { }
+        
+        
+        
+        
+        
+        
 }
