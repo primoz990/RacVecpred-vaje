@@ -16,7 +16,8 @@ public class MyFirstTriangleAndroid extends AndroidApplication
                 super.onCreate(savedInstanceState);
                
                 izbira A = new izbira(); //hranjenje muzike
-               initialize(new MyFirstTriangle(A.stevilkaMuzike), false); 
+//               initialize(new MyFirstTriangle(A.stevilkaMuzike), false);  //prejšnja vaja
+                initialize(new NalaganjeObjekta(A.stevilkaMuzike, A.stevilkaObjekta, A.stevilkaTexture), false);  //nova vaja
 	
         }
     
